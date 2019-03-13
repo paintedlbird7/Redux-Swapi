@@ -9,17 +9,22 @@ import rootReducer from "./reducers";
 import { createStore, applyMiddleware, compose } from 'redux';
 // thunk from redux-thunk
 import thunk from 'redux-thunk';
-// logger from redux-logger
-// import logger from './logger';
-// rootReducer from ./reducers
+// logger from redux-logger;
+import logger from './logger';
+// rootReducer from ./reducers;
+import charsReducer from "./reducers";
 
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const store = createStore(
-  rootReducer,
-  //   /* applyMiddleware goes here */
-  composeEnhancers(applyMiddleware(thunk, logger))
-);
+const store = createStore(charsReducer, applyMiddleware(thunk, logger));
+
+// const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+// const store = createStore(
+//   rootReducer,
+//   //   /* applyMiddleware goes here */
+//   composeEnhancers(applyMiddleware(thunk, 
+//     logger
+//     ))
+// );
 
 // const store = createStore(
 //   rootReducer
@@ -27,9 +32,18 @@ const store = createStore(
   
 // );
 
+// ReactDOM.render(
+//   <Provider store={store}>
+//     <App />
+//   </Provider>,
+//   document.getElementById("root")
+// );
+
+
+const rootElement = document.getElementById('root');
 ReactDOM.render(
   <Provider store={store}>
     <App />
   </Provider>,
-  document.getElementById("root")
+  rootElement
 );

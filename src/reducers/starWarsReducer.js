@@ -1,5 +1,11 @@
 import actions from /* we need our action types here*/ "../actions";
 
+import {
+  FETCH_NAME_START,
+  FETCH_NAME_SUCCESS,
+  FETCH_NAME_FAILURE
+} from '../actions';
+
 const initialState = {
   characters: []
   // Array characters, Boolean fetching, null error.
@@ -13,7 +19,7 @@ export const charsReducer = (state = initialState, action) => {
     // Fill me in with the important reducers
     // action types should be FETCHING, SUCCESS and FAILURE
     // your switch statement should handle all of these cases.
-    case FETCH_PHOTO_START:
+    case FETCH_NAME_START:
     // STEP IV - Handle the START action - it should return the new state
     // tree with isLoading: true, so that our UI transitions to the loading
     // state (Don't forget to add an isLoding bool to the initial state tree)
@@ -22,7 +28,7 @@ export const charsReducer = (state = initialState, action) => {
       error: '',
       isLoading: true
     };
-  case FETCH_PHOTO_SUCCESS:
+  case FETCH_NAME_SUCCESS:
     // STEP VII - Handle the SUCCESS action - it should return the new state
     // tree with isLoading: false, so that our UI transitions from the loading
     // state to the success state
@@ -30,9 +36,9 @@ export const charsReducer = (state = initialState, action) => {
       ...state,
       error: '',
       isLoading: false,
-      photoOfTheDay: action.payload
+      name: action.payload
     };
-  case FETCH_PHOTO_FAILURE:
+  case FETCH_NAME_FAILURE:
     // STEP XI - Handle the SUCCESS action - it should return the new state
     // tree with isLoading: false, so that our UI transitions from the loading
     // state to the success state (The UI was already built for this, so
