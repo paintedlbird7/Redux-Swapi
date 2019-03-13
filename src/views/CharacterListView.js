@@ -14,11 +14,13 @@ class CharacterListView extends React.Component {
 
   componentDidMount() {
     // call our action
+    this.props.getCharacters();
   }
 
   render() {
     if (this.props.fetching) {
       // return something here to indicate that you are fetching data
+      <h2>Fetching star wars characters...</h2>;
     }
     return (
       <div className="CharactersList_wrapper">
@@ -33,8 +35,10 @@ class CharacterListView extends React.Component {
 
 const mapStateToProps = state => ({
   isLoading: state.isLoading,
-  nameOfTheDay: state.nameOfTheDay,
-  error: state.error
+  // nameOfTheDay: state.nameOfTheDay,
+  characters: state.charsReducer.characters,
+  error: state.charsReducer.error,
+  fetching: state.charsReducer.fetching
 });
 
 export default connect(
@@ -42,6 +46,6 @@ export default connect(
   null /* mapStateToProps replaces null here */,
   {
     /* action creators go here */
-    getName
+    getCharacters
   }
 )(CharacterListView);
