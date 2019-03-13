@@ -10,9 +10,9 @@
 
 import axios from 'axios';
 
-export const FETCH_CHARACTERS_START = 'FETCH_NAME_START';
-export const FETCH_CHARACTERS_SUCCESS = 'FETCH_NAME_SUCCESS';
-export const FETCH_CHARACTERS_FAILURE = 'FETCH_NAME_FAILURE';
+export const FETCH_CHARACTERS_START = 'FETCH_CHARACTERS_START';
+export const FETCH_CHARACTERS_SUCCESS = 'FETCH_CHARACTERS_SUCCESS';
+export const FETCH_CHARACTERS_FAILURE = 'FETCH_CHARACTERS_FAILURE';
 
 // STEP II build an action creator that returns a function
 // instead of an action (inner function === thunk). The returned
@@ -25,18 +25,19 @@ export const getCharacters = () => dispatch => {
   // STEP VI - import axios, make an axios call to the NASA api now that
   // we have transitioned to a loading state. Make a get request with axios
   axios
-    .get('https://swapi.co/api/people')
-    .then(res => {
+    .get('https://swapi.co/api/people/')
+    .then(data => {console.log(data);
       // STEP VI - Handle the success state - dispatch the success action
       // with the data on the payload
-      dispatch({ type: FETCH_CHARACTERS_SUCCESS, payload: res.data });
+      dispatch({ type: FETCH_CHARACTERS_SUCCESS, payload: data.data.results });
     })
     .catch(err => {
       // STEP X - Handle the error state - dispatch the error action
       // with the error message on the payload
       dispatch({
         type: FETCH_CHARACTERS_FAILURE,
-        payload: err.response.data.error.message
+        payload: err
+        
       });
     });
 };

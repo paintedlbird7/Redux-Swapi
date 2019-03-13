@@ -3,7 +3,6 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import { Provider } from "react-redux";
-import rootReducer from "./reducers";
 // needed dependancies
 // applyMiddleware from redux
 import { createStore, applyMiddleware} from 'redux';
@@ -11,11 +10,11 @@ import { createStore, applyMiddleware} from 'redux';
 import thunk from 'redux-thunk';
 // logger from redux-logger;
 import logger from './logger';
-// rootReducer from ./reducers;
-import charsReducer from "./reducers";
+import rootReducer from './reducers';
+// import charsReducer from "./reducers";
 
 
-const store = createStore(charsReducer, applyMiddleware(thunk, logger));
+const store = createStore(rootReducer, applyMiddleware(thunk, logger));
 
 // const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 // const store = createStore(
